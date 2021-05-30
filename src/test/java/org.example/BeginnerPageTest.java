@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.concurrent.TimeUnit;
 
-public class BeginnerPageTest extends BaseTest {
+public class BeginnerPageTest extends BaseTest {  //Branche for GitHub
     private static Wiki basePage = Web.site.wiki;
     public SoftAssert softAssert = new SoftAssert();
     @Test
