@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.8.1'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+    google()
+}
+
+allure {
+    version = '2.13.8'
+    useTestNG {
+        version = '2.13.8'
+    }
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = JavaVersion.VERSION_1_8
+    resultsDir = file('target/allure-results')
+    reportDir = file('target/allure-reports')
+}
+
+dependencies {
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59'
+    implementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.8'
+}
+
+test {
+    useTestNG() { testLogging.showStandardStreams = true }
+    }
+task testng(type: Test) {
+    useTestNG() {
+        testLogging.showStandardStreams = true
+        useDefaultListeners = true
+        suites 'src/test/resources/suits/testng.xml'
+    }
+}
